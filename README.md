@@ -1,4 +1,4 @@
-# 🌻summer_practice
+# 🌱summer_practice
 
 A new Flutter project.
 
