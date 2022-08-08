@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green
       ),
-        home: MyHomePagee(title: 'Flutter Demo Home Page')
+        //home: MyHomePagee(title: 'Flutter Demo Home Page')
+      home: SnackBar(),
     );
   }
 }
@@ -330,7 +331,6 @@ class MyHomePagee extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 class _MyHomePageState extends State<MyHomePagee> {
-  String _userAvatar = "https://randomuser.me/api/portraits/men/46.jpg";
 
   @override
   Widget build(BuildContext context) {
@@ -447,6 +447,33 @@ class _MyHomePageState extends State<MyHomePagee> {
         onPressed: () {},
         tooltip: 'Increment',
         child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class SnackBar extends StatelessWidget {
+  const SnackBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Snack Bar'),
+        centerTitle: true,
+      ),
+      body: Center(
+          child: FlatButton(
+            child: const Text('Show me',
+              style: TextStyle(
+                color: Colors.white
+            ),
+            ),
+            color: Colors.lightGreen,
+            onPressed: () { 
+              //Scaffold.of(context).showSnackBar(SnackBar(content: Text('Hello')));
+            },
+        ),
       ),
     );
   }
