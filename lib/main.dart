@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp()); //플러터 최상위 함수 runApp함수
+void main() => runApp(const MyApp()); //플러터 최상위 함수 runApp 함수
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -329,7 +329,6 @@ class MyHomePagee extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
-
 class _MyHomePageState extends State<MyHomePagee> {
   String _userAvatar = "https://randomuser.me/api/portraits/men/46.jpg";
 
