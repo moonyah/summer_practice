@@ -385,7 +385,7 @@ class _MyHomePageState extends State<MyHomePagee> {
                   child: Row(
                     children: [
                       CircleAvatar(
-                        backgroundImage: NetworkImage(_userAvatar),
+                        backgroundImage: AssetImage('assets/munyong.png'),
                         radius: 40.0,
                       ),
                       SizedBox(
