@@ -1,10 +1,8 @@
-# summer_practice
+# 🌱summer_practice
 
 A new Flutter project.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
+플러터 공부 중...!
 
 A few resources to get you started if this is your first Flutter project:
 
