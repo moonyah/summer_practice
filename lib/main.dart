@@ -11,10 +11,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false, //우측 상단 debug 띠 표시 없애기
-      title: 'Appbar',
+      title: 'Myapp',
       theme: ThemeData(primarySwatch: Colors.green),
       //home: MyHomePagee(title: 'Flutter Demo Home Page')
-      home: DoToast(),
+      home: DoColumnRow(),
     );
   }
 }
@@ -454,7 +454,6 @@ class DoSnackBar extends StatelessWidget {
     );
   }
 }
-
 class MySnackBar extends StatelessWidget {
   const MySnackBar({Key? key}) : super(key: key);
 
@@ -507,7 +506,6 @@ class DoToast extends StatelessWidget {
         ));
   }
 }
-
 void myToast() {
   Fluttertoast.showToast(
       msg: 'Flutter',
@@ -517,4 +515,68 @@ void myToast() {
       fontSize: 20.0,
       textColor: Colors.white,
       toastLength: Toast.LENGTH_SHORT);
+}
+
+class DoContainer extends StatelessWidget {
+  const DoContainer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.green,
+      body: SafeArea(
+        child: Container(
+          color: Colors.lightGreenAccent,
+          width: 100, //Container 위젯의 크기 지정
+          height: 100,
+          //margin: EdgeInsets.all(20), // margin 으로 띄우기 (가장자리로부터 띄우기)
+          margin: const EdgeInsets.symmetric(
+            vertical: 80,
+            horizontal: 20
+          ),
+          padding: EdgeInsets.all(20),// Container 안의 Text 위치 조정
+          child: Text('Hello'),
+        ),
+      ),
+    );
+  }
+}
+
+class DoColumnRow extends StatelessWidget {
+  const DoColumnRow({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.teal,
+      body: SafeArea(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              //width: 100,
+              height: 100,
+              color: Colors.white,
+              child: Text('Container 1'),
+            ),
+            Container(
+              //width: 100,
+              height: 100,
+              color: Colors.green,
+              child: Text('Container 2'),
+            ),
+            Container(
+              //width: 100,
+              height: 100,
+              color: Colors.greenAccent,
+              child: Text('Container 3'),
+            ),
+            // Container(
+            //   width: double.infinity,// 최대한 가로축 끝까지 확장
+            // )
+          ],
+        ),
+      ),
+    );
+  }
 }
