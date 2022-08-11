@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() => runApp(const MyApp()); //플러터 최상위 함수 runApp 함수
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Appbar',
       theme: ThemeData(primarySwatch: Colors.green),
       //home: MyHomePagee(title: 'Flutter Demo Home Page')
-      home: DoSnackBar(),
+      home: DoToast(),
     );
   }
 }
@@ -445,27 +446,75 @@ class DoSnackBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Snack Bar'),
+        centerTitle: true,
+      ),
+      body: MySnackBar(),
+    );
+  }
+}
+
+class MySnackBar extends StatelessWidget {
+  const MySnackBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: RaisedButton(
+        child: Text(
+          'Show me',
+        ),
+        color: Colors.lightGreen,
+        onPressed: () {
+          Scaffold.of(context).showSnackBar(
+            const SnackBar(
+              content: Text(
+                'Hello',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    //스낵바 꾸미기
+                    color: Colors.white),
+              ),
+              backgroundColor: Colors.green,
+              duration: Duration(milliseconds: 1000), //1초
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class DoToast extends StatelessWidget {
+  const DoToast({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
         appBar: AppBar(
-          title: Text('Snack Bar'),
+          title: const Text('Toast message'),
           centerTitle: true,
         ),
-        body: Builder(
-          builder: (BuildContext ctx) {
-            return Center(
-              child: FlatButton(
-                child: Text(
-                  'Show me',
-                  style: TextStyle(color: Colors.white),
-                ),
-                color: Colors.lightGreen,
-                onPressed: () {
-                  Scaffold.of(ctx).showSnackBar(const SnackBar(
-                    content: Text('Hello'),
-                  ));
-                },
-              ),
-            );
-          },
+        body: Center(
+          child: FlatButton(
+            onPressed: () {
+              myToast();
+            },
+            color: Colors.green,
+            child: const Text('Toast'),
+          ),
         ));
   }
+}
+
+void myToast() {
+  Fluttertoast.showToast(
+      msg: 'Flutter',
+      gravity: ToastGravity.BOTTOM,
+      //toast 메세지 위치
+      backgroundColor: Colors.lightGreen,
+      fontSize: 20.0,
+      textColor: Colors.white,
+      toastLength: Toast.LENGTH_SHORT);
 }
