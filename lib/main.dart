@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Myapp',
       theme: ThemeData(primarySwatch: Colors.green),
       //home: MyHomePagee(title: 'Flutter Demo Home Page')
-      home: DoColumnRow(),
+      home: FirstPage(),
     );
   }
 }
@@ -580,3 +580,45 @@ class DoColumnRow extends StatelessWidget {
     );
   }
 }
+
+class FirstPage extends StatelessWidget {
+  const FirstPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Page'),
+      ),
+      body: Center(
+        child: RaisedButton(
+        child: Text('Go to the Second page'),
+          onPressed: () {
+          Navigator.push(context, MaterialPageRoute(
+          builder: (context)=>SecondPage()));
+          }) //First Page의 context
+     ),
+      );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext ctx) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Second Page'),
+      ),
+      body: Center(
+        child: RaisedButton(
+            child: Text('Go to the First page'),
+            onPressed: () {
+              Navigator.pop(ctx);
+            }),
+      ),
+    );
+  }
+}
+
