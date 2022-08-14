@@ -1,8 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'ScreenA.dart';
 
-void main() => runApp(const MyApp()); //플러터 최상위 함수 runApp 함수
+void main() => runApp(const Screens()); //플러터 최상위 함수 runApp 함수
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Myapp',
       theme: ThemeData(primarySwatch: Colors.green),
       //home: MyHomePagee(title: 'Flutter Demo Home Page')
-      home: FirstPage(),
+      home: Screens(),
     );
   }
 }
@@ -595,7 +596,7 @@ class FirstPage extends StatelessWidget {
         child: Text('Go to the Second page'),
           onPressed: () {
           Navigator.push(context, MaterialPageRoute(
-          builder: (context)=>SecondPage()));
+          builder: (_)=>SecondPage()));
           }) //First Page의 context
      ),
       );
@@ -622,3 +623,13 @@ class SecondPage extends StatelessWidget {
   }
 }
 
+class Screens extends StatelessWidget {
+  const Screens({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: ScreenA(),
+    );
+  }
+}
