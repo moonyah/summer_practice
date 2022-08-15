@@ -2,6 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'ScreenA.dart';
+import 'ScreenB.dart';
+import 'ScreenC.dart';
 
 void main() => runApp(const Screens()); //플러터 최상위 함수 runApp 함수
 
@@ -629,7 +631,13 @@ class Screens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ScreenA(),
+      theme: ThemeData(primarySwatch: Colors.green),
+      initialRoute: '/',
+      routes: {
+        '/' : (context) => ScreenA(),
+        '/b' : (context) => ScreenB(),
+        '/c' : (context) => ScreenC()
+      },
     );
   }
 }
