@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Myapp',
       theme: ThemeData(primarySwatch: Colors.green),
       //home: MyHomePagee(title: 'Flutter Demo Home Page')
-      home: AboutScaffoldMessenger(),
+      home: MyButtons(),
     );
   }
 }
@@ -664,7 +664,8 @@ class AboutScaffoldMessenger extends StatelessWidget {
                   label: 'Undo',
                   onPressed: (){
                     Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => ThirdPageBody()));
+                        context,
+                        MaterialPageRoute(builder: (context) => ThirdPageBody()));
                   },
                 ),
               )
@@ -685,7 +686,8 @@ class HomeBody extends StatelessWidget {
         child: Text('Go to the second page body'),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SecondPageBody()));
+              context,
+              MaterialPageRoute(builder: (context) => SecondPageBody()));
         },
       ),
     );
@@ -701,7 +703,7 @@ class SecondPageBody extends StatelessWidget {
       appBar: AppBar(
         title: Text('Second Page'),
       ),
-      body: const Center(
+      body: Center(
         child: Text('"좋아요가 추가 되었습니다"',
         style: TextStyle(
           fontSize: 20.0,
@@ -713,6 +715,7 @@ class SecondPageBody extends StatelessWidget {
 }
 
 class ThirdPageBody extends StatelessWidget {
+  const ThirdPageBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -721,7 +724,7 @@ class ThirdPageBody extends StatelessWidget {
         appBar: AppBar(
           title: Text('Third Page'),
         ),
-        body: Builder(
+        body: Builder( //다른 페이지로 넘어가면 바로 사라지게
           builder: (context) {
             return Center(
               child: Column(
@@ -734,14 +737,129 @@ class ThirdPageBody extends StatelessWidget {
                     ),),
                   ElevatedButton(onPressed: (){
                     ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content:
+                        SnackBar(content:
                         Text('"좋아요"가 취소되었습니다'),
                         duration: Duration(seconds: 3),));
-                  }, child: const Text('취소하기'))
+                  }, child: Text('취소하기'))
                 ],
               ),
             );
           }
+        ),
+      ),
+    );
+  }
+}
+
+class MyButtons extends StatelessWidget {
+  const MyButtons({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Buttons'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+              // onPressed: () {
+              //   print('text button');
+              // },
+              onLongPress: () {
+                print('text button');
+              },
+              child: const Text(
+                'Text button',
+                style: TextStyle(fontSize: 20.0),
+              ),
+              style: TextButton.styleFrom(
+                primary: Colors.redAccent,
+                //backgroundColor: Colors.blueGrey //버튼의 배경색
+              ),
+              onPressed: () {},
+            ),
+            ElevatedButton(
+              onPressed: () {
+                print('Elevated button');
+              },
+              child: Text('Elevated button'),
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.orangeAccent, //버튼의 배경색
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  elevation: 0.0),
+            ),
+            OutlinedButton(
+              onPressed: () {
+                print('Outlined button');
+              },
+              child: Text('Outlined button'),
+              style: OutlinedButton.styleFrom(
+                primary: Colors.green,
+                // side: BorderSide(
+                //   color: Colors.black87,//외곽선 색
+                //   width: 2.0//외곽선 두께
+                // )
+              ),
+            ),
+            TextButton.icon(
+              onPressed: () {
+                print('icon button');
+              },
+              icon: Icon(
+                Icons.home,
+                size: 30.0,
+                color: Colors.blueGrey, //이이콘 색상 지정 안하면 primary색
+              ),
+              label: Text('Go to home'),
+              style: TextButton.styleFrom(primary: Colors.purple),
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+                print('Go to Home');
+              },
+              icon: Icon(
+                Icons.home,
+                size: 20,
+              ),
+              label: Text('Go to Home'),
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.black, maximumSize: Size(200, 50)),
+            ),
+            OutlinedButton.icon(
+              onPressed: () {
+                print('Outlined icon button');
+              },
+              icon: Icon(Icons.home),
+              label: Text('Go to home'),
+              style: OutlinedButton.styleFrom(primary: Colors.black),
+            ),
+            ElevatedButton.icon(
+              onPressed: null, //비활성화된 버튼
+              icon: Icon(
+                Icons.home,
+                size: 20,
+              ),
+              label: Text('Go to Home'),
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.black,
+                  maximumSize: Size(200, 50),
+                  onSurface: Colors.pink), //비활성화된 버튼 색상
+            ),
+            ButtonBar(
+              //우측으로 끝정렬이 됨
+              alignment: MainAxisAlignment.center, //중앙으로 옮기기
+              buttonPadding: EdgeInsets.all(20),
+              children: [
+                TextButton(onPressed: () {}, child: Text("TextButton")),
+                ElevatedButton(onPressed: () {}, child: Text("ElevatedButton"))
+              ],
+            )
+          ],
         ),
       ),
     );
